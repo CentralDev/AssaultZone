@@ -1,0 +1,20 @@
+name: AssaultZone
+main: me.theredheadhd.assaultzone.Core
+version: 0.1
+author: TheRedHeadHD
+
+commands:
+  editstats:
+    description: For admin use only.
+  kit:
+    description: Opens the kit menu.
+  resetstats:
+    description: For admin use only.
+  setarenaspawn:
+    description: For admin use only.
+  stats:
+    description: Shows the specified player's stats.
+    
+permissions:
+  az.admin:
+    description: Defines the player as an admin.
