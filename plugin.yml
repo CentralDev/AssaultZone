@@ -4,6 +4,10 @@ version: 0.1
 author: TheRedHeadHD
 
 commands:
+  createarena:
+    description: For admin use only.
+  deletearena:
+    description: For admin use only.
   editstats:
     description: For admin use only.
   kit:
