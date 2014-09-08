@@ -2,6 +2,7 @@ package me.theredheadhd.assaultzone.utilities;
 
 import java.io.File;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -37,8 +38,12 @@ public class SettingsManager {
 		return arenas;
 	}
 	
-	public Object getArena(String id) {
-		return arenas.getConfigurationSection("Arenas" + "." + id);
+	public ConfigurationSection getArena(int id) {
+		return getArenas().getConfigurationSection("Arenas" + "." + id);
+	}
+	
+	public ConfigurationSection getArenaWorld(int id) {
+		return getArenas().getConfigurationSection("Arenas" + "." + "" + id + ".world");
 	}
 	
 	public void set(String path, Object value) {
@@ -62,7 +67,7 @@ public class SettingsManager {
 	}
 	
 	public boolean contains(String id) {
-		if(arenas.contains("Arenas" + "." + id)) {
+		if(arenas.getConfigurationSection("Arenas" + "." + id) != null) {
 			return true;
 		}
 		return false;
