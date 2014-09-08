@@ -37,8 +37,8 @@ public class SettingsManager {
 		return arenas;
 	}
 	
-	public Object get(String id) {
-		return arenas.get(id);
+	public Object getArena(String id) {
+		return arenas.getConfigurationSection("Arenas" + "." + id);
 	}
 	
 	public void set(String path, Object value) {
@@ -62,9 +62,9 @@ public class SettingsManager {
 	}
 	
 	public boolean contains(String id) {
-		if(arenas.contains(id)) {
-			return false;
-		} 
-		return true;
+		if(arenas.contains("Arenas" + "." + id)) {
+			return true;
+		}
+		return false;
 	}
 }

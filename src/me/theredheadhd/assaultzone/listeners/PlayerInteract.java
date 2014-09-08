@@ -27,30 +27,21 @@ public class PlayerInteract implements Listener {
 			if(item == null || item.getItemMeta() == null || item.getItemMeta().getDisplayName() == null) return;
 			if(item.getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "Shop Item")) {
 				ShopManager.getInstance().openShopInventory(p);
-		
 			}
 		}
 		
 		if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			if(e.getClickedBlock().getState() instanceof Sign) {
-				Sign s = (Sign) e.getClickedBlock().getState();
+			if(e.getClickedBlock() instanceof Sign) {
+				Sign s = (Sign) e.getClickedBlock();
 				
-				if(s.getLine(0).equalsIgnoreCase(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "AssaultZone" + ChatColor.DARK_GRAY + "]")) {
-					
-					String id = s.getLine(1);
-					String configID = "." + id;
-					
-					if(!(settings.get("Arenas" + configID) == null)) {
-						World world = (World) settings.get("Arenas" + configID + ".world");
-						int x = (int) settings.get("Arenas" + configID + ".xSpawn");
-						int y = (int) settings.get("Arenas" + configID + ".ySpawn");
-						int z = (int) settings.get("Arenas" + configID + ".zSpawn");
+				if(s.getLine(0).equals(ChatColor.RED + "Assault" + ChatColor.BLUE + "Zone") && settings.contains(s.getLine(1))) {
+					World world = (World) settings.getArena(s.getLine(1) + ".world");
+					int x = Integer.parseInt(s.getLine(1) + ".xSpawn");
+					int y = Integer.parseInt(s.getLine(1) + ".ySpawn");
+					int z = Integer.parseInt(s.getLine(1) + ".zSpawn");
 
-						p.teleport(new Location(world, x, y, z));
-					} else {
-						p.sendMessage(ChatColor.RED + "The specified arena does not exist. Please contact an administrator.");
-					}
-				}
+					p.teleport(new Location(world, x, y, z));
+				} else return;
 			}
 		}
 	}

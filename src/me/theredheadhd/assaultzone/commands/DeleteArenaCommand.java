@@ -13,8 +13,9 @@ public class DeleteArenaCommand implements CommandExecutor {
 
 	SettingsManager settings = SettingsManager.getInstance();
 	
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if(cmd.getName().equals("deletearena")) {
+		if(cmd.getName().equalsIgnoreCase("deletearena")) {
 			if(!(sender instanceof Player)) {
 				sender.sendMessage(ChatColor.RED + "Only players can use this command!");
 				return false;
@@ -26,16 +27,15 @@ public class DeleteArenaCommand implements CommandExecutor {
 				if(args.length == 0) {
 					MessageManager.getInstance().wrongFormat(p, "/deletearena <id>");
 					return false;
-				} else if(args.length == 1) {	
+				} else if(args.length == 1) {
 					String id = args[0];
-					String configID = "." + id;
 					
-					if(settings.get("Arenas" + configID) == null) {
-						p.sendMessage(ChatColor.RED + "The specified arena does not exist!");
+					if(settings.getArena(id) == null) {
+						p.sendMessage(ChatColor.RED + "The specified arena does not exist.");
 						return false;
 					} else {
 						settings.deleteArena(id);
-						p.sendMessage(ChatColor.GREEN + "Successfully deleted Arena: " + ChatColor.YELLOW + "" + id);
+						p.sendMessage(ChatColor.RED + "Successfully deleted arena: " + id);
 						return true;
 					}
 				} else {
