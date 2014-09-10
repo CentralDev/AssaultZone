@@ -28,15 +28,25 @@ public class DeleteArenaCommand implements CommandExecutor {
 					MessageManager.getInstance().wrongFormat(p, "/deletearena <id>");
 					return false;
 				} else if(args.length == 1) {
-					String id = args[0];
-					
-					if(settings.getArena(id) == null) {
-						p.sendMessage(ChatColor.RED + "The specified arena does not exist.");
-						return false;
+					if(args[0].equalsIgnoreCase("1")) {
+						if(settings.getArenas().contains("1")) {
+							settings.deleteArena("1");
+							return true;
+						} else {
+							p.sendMessage(ChatColor.RED + "Arena 1 has not been created!");
+							return false;
+						}
+					} else if(args[0].equalsIgnoreCase("2")) {
+						if(settings.getArenas().contains("2")) {
+							settings.deleteArena("2");
+							return true;
+						} else {
+							p.sendMessage(ChatColor.RED + "Arena 2 has not been created!");
+							return false;
+						}
 					} else {
-						settings.deleteArena(id);
-						p.sendMessage(ChatColor.RED + "Successfully deleted arena: " + id);
-						return true;
+						p.sendMessage(ChatColor.RED + "The only valid Arena ID's are '1' and '2'.");
+						return false;
 					}
 				} else {
 					MessageManager.getInstance().wrongFormat(p, "/deletearena <id>");

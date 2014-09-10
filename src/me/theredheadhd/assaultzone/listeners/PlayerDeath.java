@@ -14,10 +14,15 @@ public class PlayerDeath implements Listener {
 	public void onPlayerDeath(PlayerDeathEvent e) {
 		Player victim = e.getEntity();
 		
+		e.setDeathMessage("");
+		e.getDrops().clear();
 		InventoryClick.selectedkit.remove(victim.getName());
 		
 		StatManager.getInstance().modifyDeaths(victim, 1);
 		StatManager.getInstance().modifyPoints(victim, -3);
+		if(StatManager.getInstance().getPoints(victim) < 0) {
+			StatManager.getInstance().setPoints(victim, 0);
+		} 
 		StatManager.getInstance().modifyKills(victim, 0);
 		
 		GameScoreboard.getInstance().updateGameScoreboard(victim);

@@ -22,3 +22,11 @@ commands:
 permissions:
   az.admin:
     description: Defines the player as an admin.
+  rank.guest:
+  rank.donor:
+  rank.vip:
+  rank.mod:
+  rank.srmod:
+  rank.admin:
+  rank.owner:
+  rank.dev:

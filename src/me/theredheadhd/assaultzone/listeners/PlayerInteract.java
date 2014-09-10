@@ -33,14 +33,23 @@ public class PlayerInteract implements Listener {
 		if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			if(e.getClickedBlock() instanceof Sign) {
 				Sign s = (Sign) e.getClickedBlock();
-				
-				if(s.getLine(0).equals(ChatColor.RED + "Assault" + ChatColor.BLUE + "Zone") && settings.contains(s.getLine(1))) {
-					World world = (World) settings.getArena(s.getLine(1) + ".world");
-					int x = Integer.parseInt(s.getLine(1) + ".xSpawn");
-					int y = Integer.parseInt(s.getLine(1) + ".ySpawn");
-					int z = Integer.parseInt(s.getLine(1) + ".zSpawn");
-
-					p.teleport(new Location(world, x, y, z));
+								
+				if(s.getLine(0).equals(ChatColor.RED + "Assault" + ChatColor.BLUE + "Zone")) {
+					if(s.getLine(1).equals("1")) {
+						World world = (World) settings.getArenaWorld(1);
+						int x = Integer.parseInt((String) settings.get(".1" + ".xSpawn"));
+						int y = Integer.parseInt((String) settings.get(".1" + ".ySpawn"));
+						int z = Integer.parseInt((String) settings.get(".1" + ".zSpawn"));
+						
+						p.teleport(new Location(world, x, y, z));
+					} else if(s.getLine(1).equals("2")) {
+						World world = (World) settings.getArenaWorld(2);
+						int x = Integer.parseInt((String) settings.get(".2" + ".xSpawn"));
+						int y = Integer.parseInt((String) settings.get(".2" + ".ySpawn"));
+						int z = Integer.parseInt((String) settings.get(".2" + ".zSpawn"));
+						
+						p.teleport(new Location(world, x, y, z));
+					} else return;
 				} else return;
 			}
 		}

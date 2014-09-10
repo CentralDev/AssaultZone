@@ -27,19 +27,22 @@ public class CreateArenaCommand implements CommandExecutor {
 					MessageManager.getInstance().wrongFormat(p, "/createarena <id>");
 					return false;
 				} else if(args.length == 1) {
-					String id = args[0];
-					
-					if(settings.getArena(id) == null) {
-						settings.set("Arenas" + "." + id, id);
-						settings.set("Arenas" + "." + id + ".world", p.getLocation().getWorld().getName());
-						settings.set("Arenas" + "." + id + ".xSpawn", p.getLocation().getBlockX());
-						settings.set("Arenas" + "." + id + ".ySpawn", p.getLocation().getBlockY());
-						settings.set("Arenas" + "." + id + ".zSpawn", p.getLocation().getBlockZ());
-						
-						p.sendMessage(ChatColor.GREEN + "Successfully created arena: " + id);
+					if(args[0].equalsIgnoreCase("1")) {
+						settings.set("Arenas" + ".1", 1);
+						settings.set("Arenas" + ".1" + ".world", p.getLocation().getWorld().getName());
+						settings.set("Arenas" + ".1" + ".xSpawn", p.getLocation().getBlockX());
+						settings.set("Arenas" + ".1" + ".ySpawn", p.getLocation().getBlockY());
+						settings.set("Arenas" + ".1" + ".zSpawn", p.getLocation().getBlockZ());
+						return true;
+					} else if(args[0].equalsIgnoreCase("2")) {
+						settings.set("Arenas" + ".2", 2);
+						settings.set("Arenas" + ".1" + ".world", p.getLocation().getWorld().getName());
+						settings.set("Arenas" + ".1" + ".xSpawn", p.getLocation().getBlockX());
+						settings.set("Arenas" + ".1" + ".ySpawn", p.getLocation().getBlockY());
+						settings.set("Arenas" + ".1" + ".zSpawn", p.getLocation().getBlockZ());
 						return true;
 					} else {
-						p.sendMessage(ChatColor.RED + "The specified arena already exists. Please choose a different ID.");
+						p.sendMessage(ChatColor.RED + "The only valid Arena ID's are '1' and '2'.");
 						return false;
 					}
 				} else {

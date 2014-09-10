@@ -38,8 +38,8 @@ public class SettingsManager {
 		return arenas;
 	}
 	
-	public ConfigurationSection getArena(int id) {
-		return getArenas().getConfigurationSection("Arenas" + "." + id);
+	public Object get(String id) {
+		return getArenas().get("Arenas" + id);
 	}
 	
 	public ConfigurationSection getArenaWorld(int id) {

@@ -12,7 +12,7 @@ public class GameScoreboard {
 	private static GameScoreboard instance = new GameScoreboard();
 	public static GameScoreboard getInstance() { return instance; }
 	
-	private static Scoreboard board;
+	public Scoreboard board;
 	private static Objective o;
 	private static Score points;
 	private static Score coins;
@@ -47,8 +47,8 @@ public class GameScoreboard {
 		int playerkills = StatManager.getInstance().getKills(p);
 		int playerdeaths = StatManager.getInstance().getDeaths(p);
 
-		o.setDisplayName(ChatColor.GRAY + "" + ChatColor.BOLD + "" + p.getName() + "'s Stats");
-		
+		o.setDisplayName(ChatColor.GRAY + "" + ChatColor.BOLD + p.getName() + "'s Stats");
+
 		points = o.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + "" + ChatColor.BOLD + "Points:"));
 		points.setScore(playerpoints);
 		
@@ -61,6 +61,12 @@ public class GameScoreboard {
 		deaths= o.getScore(Bukkit.getOfflinePlayer(ChatColor.BLUE + "" + ChatColor.BOLD + "Deaths:"));
 		deaths.setScore(playerdeaths);
 		
+		p.setScoreboard(board);
+	}
+	
+	public void setPlayerScoreboard(Player p) {
+		o.setDisplayName(ChatColor.GRAY + "" + ChatColor.BOLD + p.getName() + "'s Stats");
+
 		p.setScoreboard(board);
 	}
 }

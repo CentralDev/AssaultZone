@@ -1,5 +1,4 @@
 package me.theredheadhd.assaultzone.listeners;
-
 import me.theredheadhd.assaultzone.Core;
 import me.theredheadhd.assaultzone.utilities.GameScoreboard;
 import me.theredheadhd.assaultzone.utilities.StatManager;
@@ -29,7 +28,8 @@ public class PlayerJoin implements Listener {
 			StatManager.getInstance().setDeaths(p, 0);
 		}
 		
-		GameScoreboard.getInstance().updateGameScoreboard(p);
+		Core.setPlayerNameFormat(p);
+		p.setScoreboard(GameScoreboard.getInstance().board);
 		e.setJoinMessage(ChatColor.GREEN + "" + ChatColor.BOLD + ">> " + ChatColor.YELLOW + "" + p.getName());
 	}
 }
